@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">DaftTap</string>
+    <string name="new_record">You have qualified for record list !!!</string>
+    <string name="total_taps">Total taps</string>
+    <string name="that_was_close">That was close</string>
+    <string name="ok">Ok</string>
 </resources>
