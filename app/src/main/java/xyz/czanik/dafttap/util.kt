@@ -12,4 +12,4 @@ fun Collection<TapRecord>.toJsonString() : String {
     return sb.append("]").toString()
 }
 
-fun Collection<TapRecord>.topFive() = sortedBy(TapRecord::tapCount).dropLast(max(size-5,0))
+fun Collection<TapRecord>.topFive() = sortedByDescending(TapRecord::tapCount).dropLast(max(size-5,0))
