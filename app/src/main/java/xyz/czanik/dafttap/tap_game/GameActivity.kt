@@ -6,14 +6,17 @@ import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_game.*
 import xyz.czanik.dafttap.R
+import xyz.czanik.dafttap.di.DaggerGameComponent
+import xyz.czanik.dafttap.di.GameModule
+import javax.inject.Inject
 
-class GameActivity : AppCompatActivity(),TapGameMVP.View {
+class GameActivity : AppCompatActivity(),GameMVP.View {
 
     override var isTapViewEnabled: Boolean
         get() = rootLayout.isEnabled
         set(value) { rootLayout.isEnabled = value }
 
-    /*@Inject*/ override lateinit var presenter: TapGameMVP.Presenter
+    @Inject override lateinit var presenter: GameMVP.Presenter
 
     override fun displayDialogWith(message: String,title: String) {
         AlertDialog.Builder(applicationContext)
@@ -37,6 +40,9 @@ class GameActivity : AppCompatActivity(),TapGameMVP.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
+        DaggerGameComponent.builder().gameModule(GameModule(this)).build().inject(this)
         rootLayout.setOnClickListener { presenter.onTap() }
+        isTapViewEnabled = false
+        presenter.prepareGame()
     }
 }
