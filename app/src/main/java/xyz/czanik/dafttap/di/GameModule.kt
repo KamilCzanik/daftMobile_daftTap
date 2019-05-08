@@ -23,4 +23,7 @@ class GameModule(private val gameActivity: GameActivity) {
 
     @Provides
     fun providesSharedPrefs() : SharedPreferences = PreferenceManager.getDefaultSharedPreferences(gameActivity)
+
+    @Provides
+    fun providesResources() = gameActivity.resources
 }
