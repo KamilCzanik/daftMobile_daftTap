@@ -6,10 +6,7 @@ import xyz.czanik.dafttap.TapRecord
 import xyz.czanik.dafttap.toJsonString
 import xyz.czanik.dafttap.topFive
 
-class GameModel(private val prefs: SharedPreferences) : TapGameMVP.Model {
-
-    override var time = 0L
-    override var taps = 0
+class GameModel(private val prefs: SharedPreferences) : GameMVP.Model {
 
     override val ranking : ArrayList<TapRecord> =
         Klaxon().parseArray<TapRecord>(prefs.getString("tap_ranking","")!!)?.toCollection(ArrayList())!!

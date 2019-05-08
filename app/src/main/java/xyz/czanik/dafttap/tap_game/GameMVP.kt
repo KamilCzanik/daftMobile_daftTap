@@ -2,7 +2,7 @@ package xyz.czanik.dafttap.tap_game
 
 import xyz.czanik.dafttap.TapRecord
 
-interface TapGameMVP {
+interface GameMVP {
 
     interface View {
         val presenter: Presenter
@@ -23,8 +23,6 @@ interface TapGameMVP {
     }
 
     interface Model {
-        var time: Long
-        var taps: Int
         val ranking : ArrayList<TapRecord>
 
         fun saveRanking()
