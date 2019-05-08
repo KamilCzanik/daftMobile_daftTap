@@ -21,6 +21,7 @@ class TapRecordRecyclerViewAdapter(private val recordList: List<TapRecord> ) : R
         with(holder.itemView) {
             tapCountView.text = record.tapCount.toString()
             timestampView.text = record.attemptTime.toString()
+            rankNView.text = (pos+1).toString()
         }
     }
 

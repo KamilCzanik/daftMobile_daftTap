@@ -6,4 +6,8 @@
     <string name="ok">Ok</string>
     <string name="play">Play</string>
     <string name="game_finished">Game finished</string>
+    <string name="rank">Rank</string>
+    <string name="score">Score</string>
+    <string name="timestamp">Timestamp</string>
+    <string name="title">DaftTap Challenge</string>
 </resources>

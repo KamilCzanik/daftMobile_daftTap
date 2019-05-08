@@ -43,6 +43,7 @@ class GameActivity : AppCompatActivity(),GameMVP.View {
     @SuppressLint("SetTextI18n")
     override fun updateTime(time: Long) {
         timeLeftView.text = "$time sec"
+        progressBar.progress = time.toInt()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
