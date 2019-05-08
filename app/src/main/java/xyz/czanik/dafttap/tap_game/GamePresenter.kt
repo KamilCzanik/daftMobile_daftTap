@@ -8,6 +8,7 @@ import xyz.czanik.dafttap.topFive
 import java.lang.System.currentTimeMillis
 import javax.inject.Inject
 
+/** Presenter odpowiedzialny za logikę aplikacji oraz spojenie funkcjonalności View i Model'u*/
 class GamePresenter @Inject constructor(
     override val view: GameMVP.View,
     override val model: GameMVP.Model,

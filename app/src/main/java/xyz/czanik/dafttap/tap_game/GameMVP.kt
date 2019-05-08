@@ -1,7 +1,7 @@
 package xyz.czanik.dafttap.tap_game
 
 import xyz.czanik.dafttap.TapRecord
-
+/** Kontrakt MVP definiujący obowiązki oraz zależności pomiędzy poszczególnymi elementami*/
 interface GameMVP {
 
     interface View {

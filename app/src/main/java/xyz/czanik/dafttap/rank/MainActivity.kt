@@ -11,6 +11,7 @@ import xyz.czanik.dafttap.PrefsReader
 import xyz.czanik.dafttap.R
 import xyz.czanik.dafttap.tap_game.GameActivity
 
+/** Prosta aktywność wyświetlająca listę rekordów*/
 class MainActivity : AppCompatActivity() {
 
     private val prefs by lazy { getDefaultSharedPreferences(this) as SharedPreferences }

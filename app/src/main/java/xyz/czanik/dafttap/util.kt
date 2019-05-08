@@ -2,6 +2,7 @@ package xyz.czanik.dafttap
 
 import kotlin.math.max
 
+/** Serjalizacja do formatu JSON*/
 fun Collection<TapRecord>.toJsonString() : String {
     val sb = StringBuilder().append("[")
     var prefix = ""
