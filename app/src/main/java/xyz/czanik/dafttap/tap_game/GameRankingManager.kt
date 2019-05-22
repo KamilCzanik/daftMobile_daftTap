@@ -9,8 +9,8 @@ import xyz.czanik.dafttap.toJsonString
 import xyz.czanik.dafttap.topFive
 import javax.inject.Inject
 
-/** Model spełniający rolę dostawcy danych */
-class GameModel @Inject constructor(private val prefs: SharedPreferences) : GameMVP.Model {
+/** RankingManager spełniający rolę dostawcy danych */
+class GameRankingManager @Inject constructor(private val prefs: SharedPreferences) : GameContract.RankingManager {
 
     /**Ranking jest odczytywany oraz zapisywany w formacie tablicy JSON.
     zawsze zawiera nie więcej niż 5 wartości*/
