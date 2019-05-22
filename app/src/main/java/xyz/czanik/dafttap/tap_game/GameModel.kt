@@ -3,8 +3,8 @@ package xyz.czanik.dafttap.tap_game
 import android.annotation.SuppressLint
 import android.content.SharedPreferences
 import xyz.czanik.dafttap.PrefsReader
-import xyz.czanik.dafttap.TapGame.Companion.TAP_RANKING
 import xyz.czanik.dafttap.TapRecord
+import xyz.czanik.dafttap.tap_game.TapGame.Companion.TAP_RANKING
 import xyz.czanik.dafttap.toJsonString
 import xyz.czanik.dafttap.topFive
 import javax.inject.Inject

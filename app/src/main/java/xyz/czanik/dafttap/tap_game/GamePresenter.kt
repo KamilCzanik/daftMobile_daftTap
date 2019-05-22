@@ -3,7 +3,6 @@ package xyz.czanik.dafttap.tap_game
 import android.content.res.Resources
 import android.os.CountDownTimer
 import xyz.czanik.dafttap.R
-import xyz.czanik.dafttap.TapGame
 import xyz.czanik.dafttap.topFive
 import java.lang.System.currentTimeMillis
 import javax.inject.Inject
