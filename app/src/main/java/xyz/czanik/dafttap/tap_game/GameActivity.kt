@@ -1,6 +1,7 @@
 package xyz.czanik.dafttap.tap_game
 
 import android.app.AlertDialog
+import android.arch.lifecycle.Observer
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -12,31 +13,39 @@ import xyz.czanik.dafttap.rank.MainActivity
 import javax.inject.Inject
 
 /** Aktywność gry
- * Implementuje funkcjonalność GameMVP.View*/
-class GameActivity : AppCompatActivity(),GameMVP.View {
+ * Implementuje funkcjonalność GameContract.View*/
+class GameActivity : AppCompatActivity(),GameContract.View {
 
-    @Inject override lateinit var presenter: GameMVP.Presenter
+    @Inject override lateinit var viewModel: GameContract.ViewModel
 
-    override var isTapViewEnabled: Boolean
+    private var isTapViewEnabled: Boolean
         get() = rootLayout.isEnabled
         set(value) { rootLayout.isEnabled = value }
 
-    override fun showMessage(message: String) {
-        messageView.text = message
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_game)
+        DaggerGameComponent.builder().gameModule(GameModule(this)).build().inject(this)
+        rootLayout.setOnClickListener { viewModel.onTap() }
+        isTapViewEnabled = false
+        viewModel.prepareGame()
+
+        viewModel.scoreObservable.observe(this, Observer { score -> score?.let { scoreView.text = score.toString() } })
+        viewModel.gameTimeObservable.observe(this, Observer {time -> time?.let { updateTime(time) } })
+        viewModel.messageObservable.observe(this, Observer { message -> message?.let { messageView.text = message } })
+        viewModel.endGameMessageObservable.observe(this, Observer { endMessage -> endMessage?.let { displayDialogWith(endMessage) } })
     }
 
-    override fun updateScore(score: Int) {
-        scoreView.text = score.toString()
-    }
+    private fun updateTime(time: Long) {
+        if(!isTapViewEnabled) isTapViewEnabled = true
 
-    override fun updateTime(time: Long) {
         timeLeftView.text = "$time sec"
         progressBar.progress = time.toInt()
     }
 
-    override fun displayDialogWith(message: String,title: String) {
+    private fun displayDialogWith(message: String) {
         AlertDialog.Builder(this)
-            .setTitle(title)
+            .setTitle(R.string.game_finished)
             .setMessage(message)
             .setPositiveButton(R.string.ok) { _,_ ->
                 startActivity(Intent(this,MainActivity::class.java))
@@ -44,14 +53,5 @@ class GameActivity : AppCompatActivity(),GameMVP.View {
             }
             .setCancelable(false)
             .create().show()
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_game)
-        DaggerGameComponent.builder().gameModule(GameModule(this)).build().inject(this)
-        rootLayout.setOnClickListener { presenter.onTap() }
-        isTapViewEnabled = false
-        presenter.prepareGame()
     }
 }
